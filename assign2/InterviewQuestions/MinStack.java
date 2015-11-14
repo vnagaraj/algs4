@@ -4,7 +4,7 @@ package assign2.InterviewQuestions;
  * Created by VGN on 11/12/15.
  * Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
  */
-public class MinStack {
+public class MinStack<Item> implements Stack<Item> {
     LinkedListStack<Integer> pushStack = new LinkedListStack<Integer>();
     LinkedListStack<Integer> minStack = new LinkedListStack<Integer>();
     private int size ;
@@ -33,5 +33,9 @@ public class MinStack {
 
     public int getMin() {
         return minStack.peek();
+    }
+
+    public boolean empty(){
+        return size ==0;
     }
 }

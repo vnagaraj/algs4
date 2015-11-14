@@ -4,7 +4,7 @@ package assign2.InterviewQuestions;
  * Created by VGN on 11/12/15.
  * my version of queue using linkedlist
  */
-public class LinkedListQueue<Item> {
+public class LinkedListQueue<Item> implements Queue<Item> {
     Node first;
     Node last;
     int size;
@@ -52,5 +52,9 @@ public class LinkedListQueue<Item> {
 
     public boolean isEmpty(){
         return size ==0;
+    }
+
+    public int size(){
+        return size;
     }
 }

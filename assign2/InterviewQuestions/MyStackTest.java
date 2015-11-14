@@ -1,12 +1,15 @@
 package assign2.InterviewQuestions;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by VGN on 11/12/15.
  * Implementing stack using 2 queues
  */
-class MyStack {
-    LinkedListQueue<Integer> queue1 = new LinkedListQueue<Integer>();
-    LinkedListQueue<Integer> queue2 = new LinkedListQueue<Integer>();
+class StackUsingQueues<Item> implements Stack<Item> {
+    Queue<Integer> queue1 = new ArrayQueue<Integer>();
+    Queue<Integer> queue2 = new ArrayQueue<Integer>();
     int size;
 
     // Push element x onto stack.
@@ -28,7 +31,7 @@ class MyStack {
         size -=1;
         while (!queue1.isEmpty()){
            Integer val = queue1.dequeue();
-           if (queue1.size != 0) {
+           if (queue1.size() != 0) {
                queue2.enqueue(val);
            }
             else{
@@ -38,7 +41,7 @@ class MyStack {
 
         while (!queue2.isEmpty()){
             Integer val = queue2.dequeue();
-            if (queue2.size != 0) {
+            if (queue2.size() != 0) {
                 queue1.enqueue(val);
             }
             else {
@@ -69,11 +72,26 @@ class MyStack {
         return size ==0;
     }
 
-    public static void main(String[] args){
-        MyStack stack = new MyStack();
+}
+
+public class MyStackTest{
+
+    @Test
+    public void test1(){
+        Stack<Integer> myStack = new StackUsingQueues<Integer> ();
+        myStack.push(1);
+        myStack.push(2);
+        assertTrue(myStack.top()== 2);
+    }
+
+
+    @Test
+    public void test2(){
+        Stack<Integer> stack = new StackUsingQueues<Integer> ();
         stack.push(1);
         stack.push(2);
         stack.pop();
-        System.out.println(stack.top());
+        assertTrue(stack.top() == 1);
     }
+
 }
