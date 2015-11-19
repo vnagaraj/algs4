@@ -268,6 +268,46 @@ class Solution{
         }
         return headcopy;
     }
+
+    /*Sort a linked list using insertion sort.*/
+    public ListNode insertionSortList(ListNode head) {
+        ListNode sorted = null;
+        while (head != null){
+            if (sorted == null){
+                // for first listnode
+                sorted = head;
+                head = head.next;
+                sorted.next = null;
+            }
+            else if (head.val <= sorted.val){
+                //easy case insert in front of list
+                ListNode oldSorted = sorted;
+                sorted = head;
+                head = head.next;
+                sorted.next = oldSorted;
+            }
+            else{
+                //iterate through sorted list to find location to insert
+                ListNode current = sorted;
+                ListNode prev = null;
+                while (current.val < head.val){
+                    prev = current;
+                    current = current.next;
+                    if (current == null)
+                        break;
+                }
+                ListNode copyhead = head.next;
+                //insert node between prev and current
+                ListNode oldcurrent = current;
+                prev.next = head;
+                head.next = current;
+                head = copyhead;
+            }
+
+        }
+        return sorted;
+
+    }
 }
 
 public class LinkedListTest {
